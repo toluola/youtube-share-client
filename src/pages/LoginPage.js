@@ -4,11 +4,28 @@ import { AuthConsumer } from "../../src/context";
 import { Link } from "react-router-dom";
 import { ButtonContainer } from "../utils/Button";
 
-const LoginPage = () => {
+const LoginPage = props => {
+  const [formData, setFormData] = React.useState({
+    email: "",
+    password: ""
+  })
+  let loginUser;
+  const handleInputChange = event => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value
+    });
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    loginUser(formData, props.history);
+  }
   return (
     <LoginWrapper>
       <AuthConsumer>
         {value => {
+          loginUser = value.loginUser
           return (
             <React.Fragment>
               <div className="form-header">
@@ -23,28 +40,30 @@ const LoginPage = () => {
           </Link>
                 </p>
               </div>
-              <form>
+              <form onSubmit={handleSubmit}>
                 <ul>
                   <li>
-                    <label for="userrname">username</label>
+                    <label htmlFor="username">username</label>
                     <input
                       type="text"
                       id="email"
                       name="username"
                       className="username"
-                      autofocus
-                      tabindex="1"
+                      onChange={handleInputChange}
+                      autoFocus
+                      tabIndex="1"
                     />
                   </li>
                   <li>
-                    <label for="password">Password</label>
+                    <label htmlFor="password">Password</label>
                     <input
                       type="password"
                       name="password"
                       className="password"
-                      autocomplete="off"
+                      autoComplete="off"
                       id="password"
-                      tabindex="2"
+                      onChange={handleInputChange}
+                      tabIndex="2"
                     />
                   </li>
                   <li>

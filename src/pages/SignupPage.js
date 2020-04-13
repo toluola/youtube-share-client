@@ -1,11 +1,33 @@
 import React from "react";
 import styled from "styled-components";
+import { AuthConsumer } from "../../src/context";
 import { Link } from "react-router-dom";
 import { ButtonContainer } from "../utils/Button";
 
-const SignupPage = () => {
+const SignupPage = props => {
+    const [formData, setFormData] = React.useState({
+        email: "",
+        password: ""
+      })
+      let signupUser;
+      const handleInputChange = event => {
+        setFormData({
+          ...formData,
+          [event.target.name]: event.target.value
+        });
+      };
+    
+      const handleSubmit = e => {
+        e.preventDefault()
+        signupUser(formData, props.history);
+      }
   return (
     <LoginWrapper>
+    <AuthConsumer>
+      {value => {
+        signupUser = value.signupUser
+        return (
+          <React.Fragment>
       <div className="form-header">
         <Link to="/" className="title">
           <h2>YoutubeShare</h2>
@@ -19,7 +41,7 @@ const SignupPage = () => {
           </Link>
         </p>
       </div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <ul>
           <li>
             <label for="usesrname">Username</label>
@@ -28,7 +50,8 @@ const SignupPage = () => {
               id="username"
               name="username"
               className="username"
-              tabindex="1"
+              onChange={handleInputChange}
+              tabIndex="1"
             />
           </li>
           <li>
@@ -37,9 +60,10 @@ const SignupPage = () => {
               type="password"
               name="password"
               className="password"
-              autocomplete="off"
+              autoComplete="off"
+              onChange={handleInputChange}
               id="password"
-              tabindex="2"
+              tabIndex="2"
             />
           </li>
           <li>
@@ -56,6 +80,10 @@ const SignupPage = () => {
           </li>
         </ul>
       </form>
+      </React.Fragment>
+          )
+        }}
+      </AuthConsumer>
     </LoginWrapper>
   );
 };
