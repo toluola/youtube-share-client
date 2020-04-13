@@ -2,34 +2,65 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { ButtonContainer } from "../utils/Button";
+import { AuthConsumer } from "../../src/context";
 
 const NavBar = () => {
-  // const [nav, setNav] = useState(false);
   return (
     <NavWrapper>
-      <div className="nav-title">
-        <Link to="/" className="nav-header">
-          <h2>YoutubeShare</h2>
-        </Link>
-      </div>
-      <div className="nav-button">
-        <Link to="/Login">
-          <ButtonContainer paddingTopBottom="0.8rem" paddingLeftRight="1.9rem">
-            Login
+      <AuthConsumer>
+        {value => {
+          const { isAuthenticated } = value;
+          return (
+            <React.Fragment>
+              <div className="nav-title">
+                <Link to="/" className="nav-header">
+                  <h2>YoutubeShare</h2>
+                </Link>
+              </div>
+              <div className="nav-button">
+                {isAuthenticated ? <div className="nav-button">
+                  <Link to="/share">
+                    <ButtonContainer paddingTopBottom="0.8rem" paddingLeftRight="1.9rem">
+                      Share
+
           </ButtonContainer>
-        </Link>
-        <Link to="/signup">
-          <ButtonContainer
-            background
-            hover
-            paddingTopBottom="0.8rem"
-            paddingLeftRight="1.9rem"
-          >
-            Signup
+                  </Link>
+                  <Link to="/">
+                    <ButtonContainer
+                      background
+                      hover
+                      paddingTopBottom="0.8rem"
+                      paddingLeftRight="1.9rem"
+                    >
+                      Logout
           </ButtonContainer>
-        </Link>
-      </div>
-      <hr />
+                  </Link>
+                </div> :
+                  <div className="nav-button">
+                    <Link to="/Login">
+                      <ButtonContainer paddingTopBottom="0.8rem" paddingLeftRight="1.9rem">
+                        Login
+
+          </ButtonContainer>
+                    </Link>
+                    <Link to="/signup">
+                      <ButtonContainer
+                        background
+                        hover
+                        paddingTopBottom="0.8rem"
+                        paddingLeftRight="1.9rem"
+                      >
+                        Signup
+          </ButtonContainer>
+                    </Link>
+                  </div>}
+
+              </div>
+              <hr />
+            </React.Fragment>
+          )
+        }}
+      </AuthConsumer>
     </NavWrapper>
   );
 };

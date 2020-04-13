@@ -5,82 +5,82 @@ import { Link } from "react-router-dom";
 import { ButtonContainer } from "../utils/Button";
 
 const SignupPage = props => {
-    const [formData, setFormData] = React.useState({
-        email: "",
-        password: ""
-      })
-      let signupUser;
-      const handleInputChange = event => {
-        setFormData({
-          ...formData,
-          [event.target.name]: event.target.value
-        });
-      };
-    
-      const handleSubmit = e => {
-        e.preventDefault()
-        signupUser(formData, props.history);
-      }
+  const [formData, setFormData] = React.useState({
+    email: "",
+    password: ""
+  })
+  let signupUser;
+  const handleInputChange = event => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value
+    });
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    signupUser(formData, props.history);
+  }
   return (
     <LoginWrapper>
-    <AuthConsumer>
-      {value => {
-        signupUser = value.signupUser
-        return (
-          <React.Fragment>
-      <div className="form-header">
-        <Link to="/" className="title">
-          <h2>YoutubeShare</h2>
-        </Link>
-        <h4>Create Account</h4>
-        <p>
-          Signup for FREE sharing of Youtube Videos. Already a
+      <AuthConsumer>
+        {value => {
+          signupUser = value.signupUser
+          return (
+            <React.Fragment>
+              <div className="form-header">
+                <Link to="/" className="title">
+                  <h2>YoutubeShare</h2>
+                </Link>
+                <h4>Create Account</h4>
+                <p>
+                  Signup for FREE sharing of Youtube Videos. Already a
           member?{" "}
-          <Link to="/login" className="signup-link">
-            Login
+                  <Link to="/login" className="signup-link">
+                    Login
           </Link>
-        </p>
-      </div>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          <li>
-            <label for="usesrname">Username</label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              className="username"
-              onChange={handleInputChange}
-              tabIndex="1"
-            />
-          </li>
-          <li>
-            <label for="password">Password</label>
-            <input
-              type="password"
-              name="password"
-              className="password"
-              autoComplete="off"
-              onChange={handleInputChange}
-              id="password"
-              tabIndex="2"
-            />
-          </li>
-          <li>
-            <ButtonContainer
-              background
-              hover
-              paddingTopBottom="0.8rem"
-              paddingLeftRight="1.9rem"
-              className="button"
-              tabindex="4"
-            >
-              Sign Up
+                </p>
+              </div>
+              <form onSubmit={handleSubmit}>
+                <ul>
+                  <li>
+                    <label for="usesrname">Username</label>
+                    <input
+                      type="text"
+                      id="username"
+                      name="username"
+                      className="username"
+                      onChange={handleInputChange}
+                      tabIndex="1"
+                    />
+                  </li>
+                  <li>
+                    <label for="password">Password</label>
+                    <input
+                      type="password"
+                      name="password"
+                      className="password"
+                      autoComplete="off"
+                      onChange={handleInputChange}
+                      id="password"
+                      tabIndex="2"
+                    />
+                  </li>
+                  <li>
+                    <ButtonContainer
+                      background
+                      hover
+                      paddingTopBottom="0.8rem"
+                      paddingLeftRight="1.9rem"
+                      className="button"
+                      tabindex="4"
+                    >
+                      Sign Up
             </ButtonContainer>
-          </li>
-        </ul>
-      </form>
-      </React.Fragment>
+                  </li>
+                </ul>
+              </form>
+            </React.Fragment>
           )
         }}
       </AuthConsumer>
@@ -148,4 +148,4 @@ const LoginWrapper = styled.div`
   }
 `;
 
-export default SignupPage ;
+export default SignupPage;
