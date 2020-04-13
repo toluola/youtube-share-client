@@ -34,5 +34,4 @@ span {
     margin-left: 20px;
     font-weight: bold;
 }
-}
 `;

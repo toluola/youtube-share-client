@@ -1,61 +1,70 @@
 import React from "react";
 import styled from "styled-components";
+import { AuthConsumer } from "../../src/context";
 import { Link } from "react-router-dom";
 import { ButtonContainer } from "../utils/Button";
 
 const LoginPage = () => {
   return (
     <LoginWrapper>
-      <div className="form-header">
-        <Link to="/" className="title">
-          <h2>YoutubeShare</h2>
-        </Link>
-        <h4>Login to YoutubeShare</h4>
-        <p>
-          New to YoutubeShare?{" "}
-          <Link to="/signup" className="signup-link">
-            Signup now
+      <AuthConsumer>
+        {value => {
+          return (
+            <React.Fragment>
+              <div className="form-header">
+                <Link to="/" className="title">
+                  <h2>YoutubeShare</h2>
+                </Link>
+                <h4>Login to YoutubeShare</h4>
+                <p>
+                  New to YoutubeShare?{" "}
+                  <Link to="/signup" className="signup-link">
+                    Signup now
           </Link>
-        </p>
-      </div>
-      <form>
-        <ul>
-          <li>
-            <label for="userrname">username</label>
-            <input
-              type="text"
-              id="email"
-              name="username"
-              className="username"
-              autofocus
-              tabindex="1"
-            />
-          </li>
-          <li>
-            <label for="password">Password</label>
-            <input
-              type="password"
-              name="password"
-              className="password"
-              autocomplete="off"
-              id="password"
-              tabindex="2"
-            />
-          </li>
-          <li>
-            <ButtonContainer
-              background
-              hover
-              paddingTopBottom="0.8rem"
-              paddingLeftRight="1.9rem"
-              className="button"
-              tabindex="4"
-            >
-              Login
+                </p>
+              </div>
+              <form>
+                <ul>
+                  <li>
+                    <label for="userrname">username</label>
+                    <input
+                      type="text"
+                      id="email"
+                      name="username"
+                      className="username"
+                      autofocus
+                      tabindex="1"
+                    />
+                  </li>
+                  <li>
+                    <label for="password">Password</label>
+                    <input
+                      type="password"
+                      name="password"
+                      className="password"
+                      autocomplete="off"
+                      id="password"
+                      tabindex="2"
+                    />
+                  </li>
+                  <li>
+                    <ButtonContainer
+                      background
+                      hover
+                      paddingTopBottom="0.8rem"
+                      paddingLeftRight="1.9rem"
+                      className="button"
+                      tabindex="4"
+                    >
+                      Login
             </ButtonContainer>
-          </li>
-        </ul>
-      </form>
+                  </li>
+                </ul>
+              </form>
+            </React.Fragment>
+          )
+        }}
+      </AuthConsumer>
     </LoginWrapper>
   );
 };
