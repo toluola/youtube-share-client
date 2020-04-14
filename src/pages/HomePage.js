@@ -3,7 +3,7 @@ import styled from "styled-components";
 import NavBar from "../components/NavBar";
 import axios from "../utils/axios";
 
-const Homepage = () => {
+const Homepage = props => {
     const [videos, setVideos] = useState([]);
 
     useEffect(() => {

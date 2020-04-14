@@ -9,7 +9,7 @@ const NavBar = () => {
     <NavWrapper>
       <AuthConsumer>
         {value => {
-          const { isAuthenticated } = value;
+          const { isAuthenticated, logout } = value;
           return (
             <React.Fragment>
               <div className="nav-title">
@@ -31,6 +31,7 @@ const NavBar = () => {
                       hover
                       paddingTopBottom="0.8rem"
                       paddingLeftRight="1.9rem"
+                      onClick={logout}
                     >
                       Logout
           </ButtonContainer>

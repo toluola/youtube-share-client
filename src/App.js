@@ -4,6 +4,7 @@ import HomePage from "../src/pages/HomePage";
 import LoginPage from "../src/pages/LoginPage";
 import SignupPage from "../src/pages/SignupPage";
 import SharePage from "../src/pages/SharePage";
+import { PrivateRoute } from "./utils/PrivateRoute";
 import './App.css';
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
           <Route exact path="/" component={HomePage} />
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/signup" component={SignupPage} />
-          <Route exact path="/share" component={SharePage} />
+          <PrivateRoute exact path="/share" component={SharePage} />
         </Switch>
       </div>
     </Router>

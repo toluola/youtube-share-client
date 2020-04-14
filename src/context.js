@@ -7,7 +7,8 @@ class AuthProvider extends Component {
   state = {
     isAuthenticated: false,
     errors: null,
-    loading: false
+    loading: false,
+    shared: false
   }
 
   loginUser = async (formData, history) => {
@@ -29,7 +30,14 @@ class AuthProvider extends Component {
         });
         history.push('/');
       }
-    } catch (err) { console.log(err) }
+    } catch (err) {
+      this.setState(() => {
+        return {
+          error: err.response.data.message,
+          loading: false,
+        };
+      });
+    }
   }
 
   signupUser = async (formData, history) => {
@@ -51,11 +59,17 @@ class AuthProvider extends Component {
         });
         history.push('/');
       }
-    } catch (err) { console.log(err) }
+    } catch (err) {
+      this.setState(() => {
+        return {
+          error: err.response.data.message,
+          loading: false,
+        };
+      });
+    }
   }
 
   shareVideo = async formData => {
-    console.log(formData)
     try {
       this.setState(() => {
         return { loading: true };
@@ -63,12 +77,29 @@ class AuthProvider extends Component {
       const share = await axios.post("/share", formData);
       if (share) {
         this.setState(() => {
-          return { loading: false };
+          return { loading: false, shared: true };
         });
       }
     } catch (err) {
-      console.log(err)
+      console.log(err.response)
+      this.setState(() => {
+        return {
+          error: err.response.data.message,
+          loading: false,
+        };
+      });
     }
+  }
+
+  logout = () => {
+    this.setState(() => {
+      return { isAuthenticated: false,
+        errors: null,
+        loading: false
+        };
+    });
+    localStorage.removeItem('token');
+    window.location = "http://localhost:3001/";
   }
 
   render() {
@@ -78,7 +109,8 @@ class AuthProvider extends Component {
           ...this.state,
           loginUser: this.loginUser,
           signupUser: this.signupUser,
-          shareVideo: this.shareVideo
+          shareVideo: this.shareVideo,
+          logout: this.logout
         }}
       >
         {this.props.children}

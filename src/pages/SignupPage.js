@@ -17,17 +17,19 @@ const SignupPage = props => {
     });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
-    signupUser(formData, props.history);
+    await signupUser(formData, props.history);
   }
   return (
     <LoginWrapper>
       <AuthConsumer>
         {value => {
+          const { error } = value;
           signupUser = value.signupUser
           return (
             <React.Fragment>
+              {error}
               <div className="form-header">
                 <Link to="/" className="title">
                   <h2>YoutubeShare</h2>

@@ -25,9 +25,11 @@ const LoginPage = props => {
     <LoginWrapper>
       <AuthConsumer>
         {value => {
+          const { error } = value;          
           loginUser = value.loginUser
           return (
             <React.Fragment>
+              {error}
               <div className="form-header">
                 <Link to="/" className="title">
                   <h2>YoutubeShare</h2>
