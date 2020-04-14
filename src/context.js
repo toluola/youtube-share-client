@@ -28,7 +28,7 @@ class AuthProvider extends Component {
         this.setState(() => {
           return { loading: false, error: null };
         });
-        history.push('/');
+        window.location = "https://youtube-share.netlify.com";
       }
     } catch (err) {
       this.setState(() => {
@@ -57,7 +57,7 @@ class AuthProvider extends Component {
         this.setState(() => {
           return { loading: false, error: null };
         });
-        history.push('/');
+        window.location = "https://youtube-share.netlify.com";
       }
     } catch (err) {
       this.setState(() => {
