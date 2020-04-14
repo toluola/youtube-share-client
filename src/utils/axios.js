@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const authToken = localStorage.getItem('shareToken');
+const authToken = localStorage.getItem('token');
 
 const Axios = axios.create({
   baseURL: 'http://localhost:3000',

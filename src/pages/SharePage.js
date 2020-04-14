@@ -4,7 +4,7 @@ import NavBar from "../components/NavBar";
 import { AuthConsumer } from "../../src/context";
 import { ButtonContainer } from "../utils/Button";
 
-const SharePage = (props) => {
+const SharePage = () => {
   const [formData, setFormData] = React.useState({
     link: ""
   })
@@ -17,11 +17,15 @@ const SharePage = (props) => {
     });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
-    shareVideo(formData, props.history);
+    await shareVideo(formData);
+    setFormData({
+      "link": ""
+    });
   }
 
+  const { link } = formData
   return (
     <div>
       <div><NavBar /></div>
@@ -43,6 +47,7 @@ const SharePage = (props) => {
                         name="link"
                         className="link"
                         onChange={handleInputChange}
+                        value={link}
                         autoFocus
                         tabIndex="1"
                       />

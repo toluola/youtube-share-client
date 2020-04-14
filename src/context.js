@@ -24,6 +24,9 @@ class AuthProvider extends Component {
             loading: false
           };
         });
+        this.setState(() => {
+          return { loading: false };
+        });
         history.push('/');
       }
     } catch (err) { console.log(err) }
@@ -43,17 +46,26 @@ class AuthProvider extends Component {
             loading: false
           };
         });
+        this.setState(() => {
+          return { loading: false };
+        });
         history.push('/');
       }
     } catch (err) { console.log(err) }
   }
 
-  shareVideo = (formData, history) => {
+  shareVideo = async formData => {
+    console.log(formData)
     try {
       this.setState(() => {
         return { loading: true };
       });
       const share = await axios.post("/share", formData);
+      if (share) {
+        this.setState(() => {
+          return { loading: false };
+        });
+      }
     } catch (err) {
       console.log(err)
     }
@@ -65,7 +77,8 @@ class AuthProvider extends Component {
         value={{
           ...this.state,
           loginUser: this.loginUser,
-          signupUser: this.signupUser
+          signupUser: this.signupUser,
+          shareVideo: this.shareVideo
         }}
       >
         {this.props.children}
