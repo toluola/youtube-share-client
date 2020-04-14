@@ -11,7 +11,7 @@ class AuthProvider extends Component {
     shared: false
   }
 
-  loginUser = async (formData, history) => {
+  loginUser = async (formData) => {
     try {
       this.setState(() => {
         return { loading: true };
@@ -22,11 +22,9 @@ class AuthProvider extends Component {
         this.setState(() => {
           return {
             isAuthenticated: true,
-            loading: false
+            loading: false,
+            error: null
           };
-        });
-        this.setState(() => {
-          return { loading: false, error: null };
         });
       }
     } catch (err) {
@@ -39,7 +37,7 @@ class AuthProvider extends Component {
     }
   }
 
-  signupUser = async (formData, history) => {
+  signupUser = async (formData) => {
     try {
       this.setState(() => {
         return { loading: true };
@@ -50,11 +48,9 @@ class AuthProvider extends Component {
         this.setState(() => {
           return {
             isAuthenticated: true,
-            loading: false
+            loading: false,
+            error: null
           };
-        });
-        this.setState(() => {
-          return { loading: false, error: null };
         });
       }
     } catch (err) {
