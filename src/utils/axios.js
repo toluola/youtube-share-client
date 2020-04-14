@@ -9,6 +9,6 @@ const Axios = axios.create({
   }
 });
 
-Axios.defaults.headers.common.authorization = authToken;
+Axios.defaults.headers.common.Authorization = authToken;
 
 export default Axios;
