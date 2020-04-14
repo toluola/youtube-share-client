@@ -99,7 +99,7 @@ class AuthProvider extends Component {
         };
     });
     localStorage.removeItem('token');
-    window.location = "http://localhost:3001/";
+    window.location = "https://youtube-share.netlify.com";
   }
 
   render() {
