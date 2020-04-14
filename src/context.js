@@ -26,7 +26,7 @@ class AuthProvider extends Component {
           };
         });
         this.setState(() => {
-          return { loading: false };
+          return { loading: false, error: null };
         });
         history.push('/');
       }
@@ -55,7 +55,7 @@ class AuthProvider extends Component {
           };
         });
         this.setState(() => {
-          return { loading: false };
+          return { loading: false, error: null };
         });
         history.push('/');
       }
@@ -72,7 +72,7 @@ class AuthProvider extends Component {
   shareVideo = async formData => {
     try {
       this.setState(() => {
-        return { loading: true };
+        return { loading: true, shared: false, error: null };
       });
       const share = await axios.post("/share", formData);
       if (share) {
