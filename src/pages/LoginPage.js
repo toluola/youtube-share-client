@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { AuthConsumer } from "../../src/context";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { ButtonContainer } from "../utils/Button";
 
 const LoginPage = props => {
@@ -25,7 +25,7 @@ const LoginPage = props => {
     <LoginWrapper>
       <AuthConsumer>
         {value => {
-          const { error } = value;          
+          const { error, isAuthenticated } = value;          
           loginUser = value.loginUser
           return (
             <React.Fragment>
@@ -82,6 +82,7 @@ const LoginPage = props => {
                   </li>
                 </ul>
               </form>
+              {isAuthenticated && (<Redirect to="/" />)}
             </React.Fragment>
           )
         }}
