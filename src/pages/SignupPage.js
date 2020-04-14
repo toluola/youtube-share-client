@@ -25,7 +25,7 @@ const SignupPage = props => {
     <LoginWrapper>
       <AuthConsumer>
         {value => {
-          const { error } = value;
+          const { error, isAuthenticated } = value;
           signupUser = value.signupUser
           return (
             <React.Fragment>
@@ -82,6 +82,7 @@ const SignupPage = props => {
                   </li>
                 </ul>
               </form>
+              {isAuthenticated && (<Redirect to="/" />)}
             </React.Fragment>
           )
         }}
