@@ -25,10 +25,11 @@ const SignupPage = props => {
     <LoginWrapper>
       <AuthConsumer>
         {value => {
-          const { error, isAuthenticated } = value;
+          const { error, isAuthenticated, loading } = value;
           signupUser = value.signupUser
           return (
             <React.Fragment>
+              {loading && (<h3>loading...</h3>)}
               {error}
               <div className="form-header">
                 <Link to="/" className="title">
