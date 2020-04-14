@@ -19,6 +19,7 @@ class AuthProvider extends Component {
       const user = await axios.post("/auth/login", formData);
       if (user) {
         localStorage.setItem("token", user.data.data.token);
+        window.location = "https://youtube-share.netlify.com";
         this.setState(() => {
           return {
             isAuthenticated: true,
@@ -28,7 +29,6 @@ class AuthProvider extends Component {
         this.setState(() => {
           return { loading: false, error: null };
         });
-        window.location = "https://youtube-share.netlify.com";
       }
     } catch (err) {
       this.setState(() => {
