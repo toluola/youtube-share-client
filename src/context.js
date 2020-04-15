@@ -8,7 +8,8 @@ class AuthProvider extends Component {
     isAuthenticated: false,
     errors: null,
     loading: false,
-    shared: false
+    shared: false,
+    logoutState: false
   }
 
   loginUser = async (formData) => {
@@ -89,11 +90,11 @@ class AuthProvider extends Component {
     this.setState(() => {
       return { isAuthenticated: false,
         errors: null,
-        loading: false
+        loading: false,
+        logout: true
         };
     });
     localStorage.removeItem('token');
-    window.location = "https://youtube-share.netlify.com";
   }
 
   render() {

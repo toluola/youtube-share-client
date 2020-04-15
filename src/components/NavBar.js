@@ -9,9 +9,10 @@ const NavBar = () => {
     <NavWrapper>
       <AuthConsumer>
         {value => {
-          const { isAuthenticated, logout } = value;
+          const { isAuthenticated, logout, logoutState } = value;
           return (
             <React.Fragment>
+              {logoutState && (<Redirect to="/" />)}
               <div className="nav-title">
                 <Link to="/" className="nav-header">
                   <h2>YoutubeShare</h2>
