@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import jwtDecode from "jwt-decode";
 import axios from "../src/utils/axios";
 
 const AuthContext = React.createContext();
@@ -20,6 +21,8 @@ class AuthProvider extends Component {
       const user = await axios.post("/auth/login", formData);
       if (user) {
         localStorage.setItem("token", user.data.data.token);
+        const decodedToken = await jwtDecode(user.data.data.token)
+        console.log(decodedToken);
         this.setState(() => {
           return {
             isAuthenticated: true,
