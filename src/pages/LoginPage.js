@@ -4,7 +4,7 @@ import { AuthConsumer } from "../../src/context";
 import { Link, Redirect } from "react-router-dom";
 import { ButtonContainer } from "../utils/Button";
 
-const LoginPage = props => {
+const LoginPage = () => {
   const [formData, setFormData] = React.useState({
     email: "",
     password: ""
@@ -19,7 +19,7 @@ const LoginPage = props => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    loginUser(formData, props.history);
+    loginUser(formData);
   }
   return (
     <LoginWrapper>

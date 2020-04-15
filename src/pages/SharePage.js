@@ -63,7 +63,7 @@ const SharePage = () => {
                         paddingTopBottom="0.8rem"
                         paddingLeftRight="1.9rem"
                         className="button"
-                        tabindex="4"
+                        tabindex="3"
                       >
                         Share
                 </ButtonContainer>

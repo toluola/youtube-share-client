@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import NavBar from "../components/NavBar";
 import axios from "../utils/axios";
-import { AuthConsumer } from "../../src/context";
 
 const Homepage = props => {
   const [videos, setVideos] = useState([]);
@@ -14,24 +13,13 @@ const Homepage = props => {
   }, []);
   return (
     <div>
-      <AuthConsumer>
-        {value => {
-          const { user } = value
-          return (
-            <React.Fragment>
-              <div><NavBar /></div>
-              {
-                videos.map((vid, i) => (
-                  <CardWrapper key={i}><iframe width="460" height="250" title={vid.id} src={`https://www.youtube.com/embed/${vid.link}`}
-                    frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen>
-                  </iframe> <span className="span">Shared by: {user}</span></CardWrapper>
-                ))
-              }
-            </React.Fragment>
-          )
-        }}
-      </AuthConsumer>
+      <div><NavBar /></div>
+      {videos.map((vid, i) => (
+        <CardWrapper key={i}><iframe width="460" height="250" title={vid.id} src={`https://www.youtube.com/embed/${vid.youtubeId}`}
+          frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen>
+        </iframe> <span className="span">Shared by: {vid.owner}</span></CardWrapper>
+      ))}
     </div>
 
   )

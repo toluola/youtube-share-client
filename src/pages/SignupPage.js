@@ -4,7 +4,7 @@ import { AuthConsumer } from "../../src/context";
 import { Link, Redirect } from "react-router-dom";
 import { ButtonContainer } from "../utils/Button";
 
-const SignupPage = props => {
+const SignupPage = () => {
   const [formData, setFormData] = React.useState({
     email: "",
     password: ""
@@ -19,7 +19,7 @@ const SignupPage = props => {
 
   const handleSubmit = async e => {
     e.preventDefault()
-    await signupUser(formData, props.history);
+    await signupUser(formData);
   }
   return (
     <LoginWrapper>
@@ -83,7 +83,7 @@ const SignupPage = props => {
                   </li>
                 </ul>
               </form>
-              {isAuthenticated && (<Redirect to="/login" />)}
+              {isAuthenticated && (<Redirect to="/" />)}
             </React.Fragment>
           )
         }}

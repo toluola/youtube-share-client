@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import jwtDecode from "jwt-decode";
 import axios from "../src/utils/axios";
 
 const AuthContext = React.createContext();
@@ -10,8 +9,7 @@ class AuthProvider extends Component {
     errors: null,
     loading: false,
     shared: false,
-    logoutState: false,
-    user: ""
+    logoutState: false
   }
 
   loginUser = async (formData) => {
@@ -21,15 +19,12 @@ class AuthProvider extends Component {
       });
       const user = await axios.post("/auth/login", formData);
       if (user) {
-        localStorage.setItem("token", user.data.data.token);
-        const decodedToken = await jwtDecode(user.data.data.token)
-        console.log(decodedToken);
+        window.localStorage.setItem("token", user.data.data.token);
         this.setState(() => {
           return {
             isAuthenticated: true,
             loading: false,
-            error: null,
-            user: decodedToken.username
+            error: null
           };
         });
       }
@@ -50,7 +45,7 @@ class AuthProvider extends Component {
       });
       const user = await axios.post("/auth/signup", formData);
       if (user) {
-        localStorage.setItem("token", user.data.data.token);
+        await localStorage.setItem("token", user.data.data.token);
         this.setState(() => {
           return {
             isAuthenticated: true,
@@ -74,7 +69,16 @@ class AuthProvider extends Component {
       this.setState(() => {
         return { loading: true, shared: false, error: null };
       });
-      const share = await axios.post("/share", formData);
+      const postData = {
+                    method: "POST",
+                    mode: "cors",
+                    headers: {
+                      "Content-Type": "application/json",
+                      "Authorization": `${localStorage.token}`
+                    },
+                    body: JSON.stringify(formData)
+    }
+      const share = await fetch("https://youtube-share-api.herokuapp.com/share", postData);
       if (share) {
         this.setState(() => {
           return { loading: false, shared: true };

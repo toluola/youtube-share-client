@@ -96,9 +96,6 @@ const NavWrapper = styled.div`
     text-align: center;
   }
   @media (max-width: 850px) {
-    .nav-button {
-      display: none;
-    }
     .icon {
       display: block;
     }
