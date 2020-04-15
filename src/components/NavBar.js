@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { ButtonContainer } from "../utils/Button";
 import { AuthConsumer } from "../../src/context";
 
