@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import NavBar from "../components/NavBar";
 import axios from "../utils/axios";
+import { AuthConsumer } from "../../src/context";
 
 const Homepage = props => {
   const [videos, setVideos] = useState([]);
