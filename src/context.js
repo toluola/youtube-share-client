@@ -10,7 +10,8 @@ class AuthProvider extends Component {
     errors: null,
     loading: false,
     shared: false,
-    logoutState: false
+    logoutState: false,
+    user: ""
   }
 
   loginUser = async (formData) => {
@@ -27,7 +28,8 @@ class AuthProvider extends Component {
           return {
             isAuthenticated: true,
             loading: false,
-            error: null
+            error: null,
+            user: decodedToken.username
           };
         });
       }
