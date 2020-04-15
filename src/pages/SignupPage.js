@@ -83,7 +83,7 @@ const SignupPage = props => {
                   </li>
                 </ul>
               </form>
-              {isAuthenticated && (<Redirect to="/" />)}
+              {isAuthenticated && (<Redirect to="/login" />)}
             </React.Fragment>
           )
         }}
