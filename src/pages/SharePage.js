@@ -32,10 +32,11 @@ const SharePage = () => {
       <ShareWrapper>
         <AuthConsumer>
           {value => {
-            const { error, shared } = value;
+            const { error, shared, loading } = value;
             shareVideo = value.shareVideo
             return (
               <React.Fragment>
+                {loading && (<h3>loading...</h3>)}
                 {error}
                 {shared && (<h3>Video Shared Successfully</h3>)}
                 <div className="form-header">
